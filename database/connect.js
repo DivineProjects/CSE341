@@ -1,4 +1,3 @@
-// db.js
 const dotenv = require("dotenv");
 dotenv.config(); // Load environment variables from .env file
 const { MongoClient } = require("mongodb");
@@ -11,7 +10,7 @@ const initDb = (callback) => {
     return callback(null, _db);
   }
   // Connect to MongoDB using the URI from the .env file
-  MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  MongoClient.connect(process.env.MONGODB_URI)
     .then((client) => {
       _db = client.db(); // Access the database (it will default to the database in the URI)
       callback(null, _db);
@@ -21,7 +20,7 @@ const initDb = (callback) => {
     });
 };
 
-const getDb = () => {
+const getDatabase = () => {
   if (!_db) {
     throw Error("Db not initialized");
   }
@@ -30,5 +29,5 @@ const getDb = () => {
 
 module.exports = {
   initDb,
-  getDb,
+  getDatabase
 };
