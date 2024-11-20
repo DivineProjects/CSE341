@@ -4,7 +4,7 @@ const PORT = 8080;
 
 app.use("/", require("./routes/index"));
 
-const { initDb, getDb } = require("./database/connect");
+const { initDb } = require("./database/connect");
 
 // Initialize the database
 initDb((err, db) => {
@@ -14,10 +14,6 @@ initDb((err, db) => {
   }
 
   console.log("Connected to MongoDB ...");
-  // You can now use the `getDb` function to interact with the database
-  // const collection = getDb().collection("users");
-  // console.log(collection);
-
   // Start the server once the DB is connected
   app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
