@@ -1,10 +1,9 @@
 const routes = require("express").Router();
-const controllers = require("../controllers/index");
 
-routes.get('/', controllers.homeRouter);
+routes.get('/', (req, res) => {
+    res.send("Home Page ...");
+  });
 
-routes.get("/users", controllers.getAll);
-routes.get("/users/:id", controllers.getSingle);
-
+routes.use("/users", require("./users"));
 
 module.exports = routes;

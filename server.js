@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const PORT = 8080;
 
-app.use("/", require("./routes/index"));
+app.use(bodyParser.json());
+app.use("/", require("./routes"));
 
 const { initDb } = require("./database/connect");
 
