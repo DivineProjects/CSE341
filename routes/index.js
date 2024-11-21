@@ -1,10 +1,12 @@
 const routes = require("express").Router();
-const controllers = require("../controllers/index");
 
-routes.get('/', controllers.homeRouter);
+routes.use("/", require("./swagger"));
 
-routes.get("/users", controllers.getAll);
-routes.get("/users/:id", controllers.getSingle);
+routes.get('/', (req, res) => {
+  // #swagger.tags=["Hello World"]
+    res.send("Home Page ...");
+  });
 
+routes.use("/users", require("./users"));
 
 module.exports = routes;
