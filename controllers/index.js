@@ -5,10 +5,12 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 const homeRouter = (req, res) => {
+  // #swagger.tags=["Users"]
     res.send("Great Job, Amazing");
   };
 
 const getAll = async (req, res) => {
+  // #swagger.tags=["Users"]
   // Fetch the database and collection
   const db = mongodb.getDatabase();
   const result = await db.collection("users").find();
@@ -19,6 +21,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+  // #swagger.tags=["Users"]
   const userId = new ObjectId(req.params.id);
   // const objectId = new ObjectId(userId);
   // Fetch the database and the "users" collection
@@ -31,6 +34,7 @@ const getSingle = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
+  // #swagger.tags=["Users"]
   // const userId = new ObjectId(req.params.id);
   const user = { 
     firstName: req.body.firstName, 
@@ -50,6 +54,7 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  // #swagger.tags=["Users"]
   const userId = new ObjectId(req.params.id);
   const user = { 
     firstName: req.body.firstName, 
@@ -69,9 +74,10 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+  // #swagger.tags=["Users"]
   const userId = new ObjectId(req.params.id);
   const db = mongodb.getDatabase();
-  const response = await db.collection("users").delete({ _id : userId });
+  const response = await db.collection("users").deleteOne({ _id : userId });
   if (response.deletedCount > 0){
     res.status(204).send();
   } else
