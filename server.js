@@ -7,10 +7,12 @@ const session = require("express-session");
 const GithubStrategy = require("passport-github2").Strategy;
 const cors = require('cors');
 const dotenv = require('dotenv');
-dotenv.config(); // Load environment variables from .env file
+// const validation = require('../middleware/validation');
+dotenv.config(); // Load environment variables from .env file 
 
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // Use sessions to maintain login state
 app.use(session({ 
   secret: 'secret', //should be chaged to a random number
